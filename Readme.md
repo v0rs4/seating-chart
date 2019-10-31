@@ -5,6 +5,11 @@
 [http://seating-chart.v0rs4.com](http://seating-chart.v0rs4.com)
 
 
+## TODO
+- [ ] Add client ID persistence
+- [ ] Make mobile-friendly
+
+
 ## Description
 
 - Users can access a web app and see a grid of circles, representing stadium seats.
