@@ -1,5 +1,4 @@
-node_modules
-dist
-server
-public/index.html
-public/main*
+/node_modules
+/server
+/public/index.html
+/public/main*
