@@ -6,7 +6,7 @@
 
 
 ## TODO
-- [ ] Add client ID persistence
+- [x] Add client-side ID persistence
 - [ ] Make mobile-friendly
 
 
