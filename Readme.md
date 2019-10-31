@@ -1,7 +1,5 @@
 # Real-time Reserved Seating Chart
 
----
-
 ## Demo
 
 [http://seating-chart.v0rs4.com](http://seating-chart.v0rs4.com)
@@ -33,3 +31,10 @@
 * React
 * Redux, Rematch
 * React-Konva
+
+### Up and Running
+```sh
+docker-composer up
+```
+
+and go to http://localhost:5000
