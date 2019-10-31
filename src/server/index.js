@@ -3,6 +3,7 @@ import express from 'express';
 import http from 'http';
 import morgan from 'morgan';
 import socketIO from 'socket.io';
+import uuid from 'uuid/v4';
 
 import { 
   MAX_SELECTED_COUNT, 
@@ -16,7 +17,7 @@ const app = express();
 const server = http.Server(app)
 const io = socketIO(server);
 
-app.use(morgan());
+app.use(morgan('dev'));
 
 if (process.env.NODE_ENV === 'production') {
   app.use('/', express.static(path.join(__dirname, '../public')))
@@ -33,13 +34,14 @@ if (process.env.NODE_ENV === 'production') {
 
 io.on('connection', socket => {
   const { getState, dispatch } = store;
-  const customerId = socket.id;
 
-  dispatch.customers.addCustomer({ customerId, socket });
+  socket.on('sign-in', (__customerId, ack) => {
+    const customerId = __customerId || uuid();
+    dispatch.customers.addOrUpdateCustomer({ customerId, socket });
+    ack(customerId);
+  });
 
-  socket.emit('update-customer-id', { customerId });
-
-  socket.on('select-seat', (seatId) => {
+  socket.on('select-seat', ({ seatId, customerId }) => {
     dispatch.seats.select({ seatId, customerId });
   });
 });

@@ -10,13 +10,18 @@ document.addEventListener("DOMContentLoaded", function(){
 
   const { socket } = getState();
 
+  socket.emit('sign-in', localStorage.getItem('customerId'), customerId => {
+    dispatch.customerId.update(customerId);
+    localStorage.setItem('customerId', customerId);
+  })
+
   socket.on('update', ({ seats, onlineCount, remainingCount }) => {
     dispatch.seats.update(seats);
     dispatch.onlineCount.update(onlineCount);
     dispatch.remainingCount.update(remainingCount);
   });
   
-  socket.on('update-customer-id', ({ customerId }) => dispatch.customerId.update(customerId));
+  // socket.on('update-customer-id', ({ customerId }) => dispatch.customerId.update(customerId));
 
   const wrapper = document.getElementById("rootWrapper");
   wrapper ? render(<Provider store={store}><App/></Provider>, wrapper) : false;

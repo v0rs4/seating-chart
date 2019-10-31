@@ -1,10 +1,11 @@
 {
   "dependencies": {
     "@rematch/core": "^1.2.0",
-    "redux": "^4.0.4",
     "express": "^4.17.1",
     "morgan": "^1.9.1",
-    "socket.io": "^2.3.0"
+    "redux": "^4.0.4",
+    "socket.io": "^2.3.0",
+    "uuid": "^3.3.3"
   },
   "name": "real_time_seating_chart",
   "version": "1.0.0",
@@ -27,13 +28,12 @@
     "react-redux": "^7.1.1",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.9",
-    "webpack-dev-server": "^3.9.0",
+    "webpack-dev-middleware": "^3.7.2",
     "webpack-hot-middleware": "^2.25.0"
   },
   "scripts": {
     "start": "node server",
     "start:dev": "babel-node src/server/index.js",
-    "start:webpack-dev-server": "webpack-dev-server --open --mode development",
     "build": "webpack --mode production && babel src/server -d server"
   },
   "author": "",

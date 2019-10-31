@@ -8,8 +8,8 @@ export const seats = {
     }
   },
   effects: (dispatch) => ({
-    selectAsync(seatId, { socket }) {
-      socket.emit("select-seat", seatId);
+    selectAsync(seatId, { socket, customerId }) {
+      socket.emit("select-seat", { seatId, customerId });
     }
   })
 }

@@ -15,21 +15,6 @@ export const seats = {
         });
       });
     }
-    // select(state, { seatId, customerId }) {
-    //   return state.map(row => {
-    //     return row.map(seat => {
-    //       if (seat.id == seatId) {
-    //         if (seat.selectedBy === null) {
-    //           return { ...seat, selectedBy: customerId };
-    //         } else if (seat.selectedBy == customerId) {
-    //           return { ...seat, selectedBy: null };
-    //         }
-    //       }
-  
-    //       return seat;
-    //     });
-    //   });
-    // }
   },
   effects: (dispatch) => ({
     select({ seatId, customerId }, { customers, seats }) {
@@ -56,8 +41,17 @@ export const seats = {
 export const customers = {
   state: [],
   reducers: {
-    addCustomer(state, { customerId, socket }) {
+    add(state, { customerId, socket }) {
       return [...state, { customerId, socket, selectedCount: 0 }];
+    },
+    update(state, {customerId, socket}) {
+      return state.map(customer => {
+        if (customer.customerId == customerId) {
+          return { ...customer, socket };
+        }
+
+        return customer;
+      })
     },
     incrementSelectedCount(state, { customerId, by }) {
       return state.map(customer => {
@@ -71,5 +65,14 @@ export const customers = {
         return customer
       });
     },
-  }
+  },
+  effects: (dispatch) => ({
+    addOrUpdateCustomer({ customerId, socket }, { customers }) {
+      const customer = customers.find(customer => customer.customerId == customerId);
+
+      customer ? 
+        dispatch.customers.update({ customerId, socket }) : 
+        dispatch.customers.add({ customerId, socket })
+    }
+  })
 }
