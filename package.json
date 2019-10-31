@@ -1,0 +1,41 @@
+{
+  "dependencies": {
+    "@rematch/core": "^1.2.0",
+    "redux": "^4.0.4",
+    "express": "^4.17.1",
+    "morgan": "^1.9.1",
+    "socket.io": "^2.3.0"
+  },
+  "name": "real_time_seating_chart",
+  "version": "1.0.0",
+  "description": "___",
+  "main": "server/index.js",
+  "devDependencies": {
+    "@babel/cli": "^7.6.4",
+    "@babel/core": "^7.6.4",
+    "@babel/node": "^7.6.3",
+    "@babel/preset-env": "^7.6.3",
+    "@babel/preset-react": "^7.6.3",
+    "babel-loader": "^8.0.6",
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^3.2.0",
+    "konva": "^4.0.16",
+    "nodemon": "^1.19.4",
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0",
+    "react-konva": "^16.10.1-0",
+    "react-redux": "^7.1.1",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.9",
+    "webpack-dev-server": "^3.9.0",
+    "webpack-hot-middleware": "^2.25.0"
+  },
+  "scripts": {
+    "start": "node server",
+    "start:dev": "babel-node src/server/index.js",
+    "start:webpack-dev-server": "webpack-dev-server --open --mode development",
+    "build": "webpack --mode production && babel src/server -d server"
+  },
+  "author": "",
+  "license": "ISC"
+}
